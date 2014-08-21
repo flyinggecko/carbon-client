@@ -11,8 +11,11 @@ Implements a carbon client which is able to send:
 
 import socket
 import struct
-import cPickle
 import sys
+if sys.version_info[0] >= 3:
+    import pickle
+else:
+    import cPickle as pickle
 
 
 class CarbonClient():
@@ -32,8 +35,8 @@ class CarbonClient():
             sock = socket.socket()
             sock.connect((self._host, self._port))
         except socket.error as msg:
-            print msg
-            print 'Could not open socket: ' + self._host + ':' + str(self._port)
+            print(msg)
+            print('Could not open socket: ' + self._host + ':' + str(self._port))
             sys.exit(1)
 
         sock.send("%s %f %d\n" % (name, value, timestamp))
@@ -47,7 +50,7 @@ class CarbonClient():
 
             [(path, (timestamp, value)), ...]
         '''
-        payload = cPickle.dumps(pickle_data)
+        payload = pickle.dumps(pickle_data)
         header = struct.pack("!L", len(payload))
         message = header + payload
 
@@ -56,8 +59,8 @@ class CarbonClient():
             sock.connect((self._host, self._port))
 
         except socket.error as msg:
-            print msg
-            print 'Could not open socket: ' + self._host + ':' + str(self._port)
+            print(msg)
+            print('Could not open socket: ' + self._host + ':' + str(self._port))
             sys.exit(1)
 
         sock.send(message)
