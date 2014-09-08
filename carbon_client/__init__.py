@@ -14,8 +14,13 @@ import struct
 import cPickle
 import sys
 
+__version__ = '0.1'
+__author__ = 'Andreas Rütten'
+__license__ = 'MIT License'
+__copyright__ = 'Copyright 2014 Andreas Rütten'
 
 class CarbonClient():
+
 
     def __init__(self, host, port):
         '''
