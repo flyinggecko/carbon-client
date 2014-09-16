@@ -32,7 +32,7 @@ setup(
     package_dir={'carbon_client': 'carbon_client'},
     include_package_data=True,
     install_requires=requires,
-    license='MIT',
+    license='MIT License',
     zip_safe=False,
     classifiers=(
         'Natural Language :: English',
